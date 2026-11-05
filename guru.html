@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layar Guru - SDN TANJUNG BARU</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-indigo-50 min-h-screen font-sans p-6">
+  <div class="max-w-4xl mx-auto bg-white rounded-3xl p-8 shadow-2xl border border-indigo-100 text-center">
+    <span class="bg-indigo-100 text-indigo-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">PANEL KONTROL GURU</span>
+    <h1 class="text-3xl font-black text-indigo-900 mt-2 mb-1">KUIS MATEMATIKA KPK & FPB</h1>
+    <p class="text-gray-500 mb-6">SDN TANJUNG BARU - KELAS V SD</p>
+
+    <!-- KONTROL UTAMA -->
+    <div id="control-panel" class="mb-8">
+      <div class="bg-indigo-50 border-2 border-dashed border-indigo-300 p-6 rounded-2xl inline-block mb-6">
+        <p class="text-sm font-bold text-indigo-700 mb-1">PIN KUIS KELAS ANDA:</p>
+        <div id="display-pin" class="text-6xl font-black text-indigo-600 tracking-widest">789123</div>
+      </div>
+      <div>
+        <button onclick="startQuizSession()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xl px-8 py-4 rounded-2xl shadow-lg transition-all">MULAI KUIS SEKARANG 🚀</button>
+      </div>
+    </div>
+
+    <!-- TABEL DAFTAR SISWA & SKOR LIVE -->
+    <div class="text-left border-t pt-6">
+      <h3 class="font-bold text-gray-700 mb-4 text-lg">📊 Daftar Siswa Terhubung & Skor Live:</h3>
+      <div class="bg-gray-50 rounded-2xl p-4 border border-gray-200 min-h-[150px]">
+        <div id="live-student-list" class="space-y-2">
+          <p class="text-gray-400 italic text-center py-6">Belum ada siswa yang bergabung. Berikan PIN di atas kepada siswa!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Generate PIN Acak 6 Angka untuk Sesi Guru
+    const randomPin = Math.floor(100000 + Math.random() * 900000);
+    document.getElementById('display-pin').innerText = randomPin;
+
+    function startQuizSession() {
+      alert("Sesi kuis dimulai! Siswa dapat memasukkan PIN " + randomPin + " dari HP mereka masing-masing.");
+      // Di sini tombol guru terhubung langsung untuk mengontrol jalannya soal
+    }
+  </script>
+</body>
+</html>

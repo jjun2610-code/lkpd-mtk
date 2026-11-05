@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Siswa - SDN TANJUNG BARU</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-emerald-50 min-h-screen font-sans p-4 flex flex-col justify-center items-center">
+  <div class="max-w-md w-full bg-white rounded-3xl p-6 shadow-xl border border-emerald-100 text-center">
+    <div class="text-5xl mb-3">📱</div>
+    <h1 class="text-2xl font-black text-emerald-900 mb-1">KUIS SISWA</h1>
+    <p class="text-xs text-gray-500 mb-6">SDN TANJUNG BARU - KELAS V SD</p>
+
+    <!-- FORM MASUK -->
+    <div id="login-box" class="space-y-4">
+      <input id="student-pin" type="number" placeholder="Masukkan PIN dari Guru" class="w-full p-3 rounded-xl border-2 border-emerald-200 text-center font-bold text-lg outline-none focus:border-emerald-500">
+      <input id="student-name" type="text" placeholder="Nama Lengkap / Kelompok" class="w-full p-3 rounded-xl border-2 border-emerald-200 text-center font-bold text-lg outline-none focus:border-emerald-500">
+      <button onclick="joinQuiz()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-black py-3.5 rounded-xl shadow-lg transition-all">GABUNG KUIS</button>
+    </div>
+
+    <!-- AREA SOAL (MUNCUL SETELAH GABUNG) -->
+    <div id="game-box" class="hidden text-left">
+      <div class="flex justify-between items-center mb-4 border-b pb-2">
+        <span id="q-status" class="font-bold text-emerald-700 text-sm">Soal 1 dari 5</span>
+        <span id="q-timer" class="font-black text-amber-600 bg-amber-50 px-3 py-1 rounded-full">⏱️ 60s</span>
+      </div>
+      <h3 id="q-text" class="font-bold text-gray-800 text-base mb-4">Memuat pertanyaan...</h3>
+      <div id="options-container" class="space-y-3"></div>
+      <div id="feedback" class="mt-4"></div>
+    </div>
+  </div>
+
+  <script>
+    let currentSession = null;
+    let myName = '';
+
+    async function joinQuiz() {
+      const pin = document.getElementById('student-pin').value.trim();
+      const name = document.getElementById('student-name').value.trim();
+
+      if (!pin || !name) {
+        alert("Harap isi PIN dan Nama Anda!");
+        return;
+      }
+
+      myName = name;
+      currentSession = pin;
+
+      // Simpan ke localStorage agar HP siswa mengingat sesi
+      localStorage.setItem('sdntb_pin', pin);
+      localStorage.setItem('sdntb_name', name);
+
+      document.getElementById('login-box').classList.add('hidden');
+      document.getElementById('game-box').classList.remove('hidden');
+      
+      // Simulasi tampilan menunggu guru memulai soal
+      document.getElementById('q-text').innerText = "Halo " + name + "! Menunggu guru memulai soal di layar depan...";
+    }
+  </script>
+</body>
+</html>
